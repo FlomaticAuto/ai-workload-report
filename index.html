@@ -1,1 +1,99 @@
-﻿<!DOCTYPE html><html><body style='font-family:sans-serif;background:#0d1117;color:#e6edf3;padding:40px'><h1>AI Workload Report</h1><p>Awaiting first nightly run...</p></body></html>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Workload Report - Flomatic Automation</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root { color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#0d1117; color:#e6edf3; margin:0; padding:24px; max-width:1400px; margin:0 auto; }
+  h1 { color:#58a6ff; margin:0 0 4px; }
+  .sub { color:#8b949e; font-size:13px; margin-bottom:24px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin:24px 0; }
+  .card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:16px; }
+  .card h3 { margin:0 0 8px; color:#8b949e; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+  .metric { font-size:30px; font-weight:600; color:#58a6ff; }
+  .chart-wrap { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:16px; margin:16px 0; height:280px; }
+  table { width:100%; border-collapse:collapse; background:#161b22; border:1px solid #30363d; border-radius:8px; overflow:hidden; }
+  th, td { padding:10px 12px; text-align:left; border-bottom:1px solid #30363d; font-size:14px; }
+  th { background:#21262d; color:#8b949e; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+  tr:hover td { background:#1c2128; }
+  .tables { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  @media (max-width:800px){ .tables{ grid-template-columns:1fr; } }
+  h2 { color:#e6edf3; font-size:18px; margin:24px 0 8px; }
+  .footer { color:#6e7681; font-size:12px; margin-top:32px; padding-top:16px; border-top:1px solid #30363d; }
+</style>
+</head>
+<body>
+<h1>AI Workload Performance Report</h1>
+<div class="sub">Generated 2026-05-24 15:28:46 &middot; Window 05/24/2026 13:42:41.032 &rarr; 05/24/2026 15:28:33.635 &middot; 154 samples</div>
+
+<div class="grid">
+  <div class="card"><h3>CPU avg</h3><div class="metric">34.7%</div></div>
+  <div class="card"><h3>CPU p95</h3><div class="metric">60.6%</div></div>
+  <div class="card"><h3>CPU peak</h3><div class="metric">82.8%</div></div>
+  <div class="card"><h3>Mem committed avg</h3><div class="metric">85.2%</div></div>
+  <div class="card"><h3>Mem committed p95</h3><div class="metric">86.7%</div></div>
+  <div class="card"><h3>Mem committed peak</h3><div class="metric">88%</div></div>
+</div>
+
+<h2>CPU - hourly average</h2>
+<div class="chart-wrap"><canvas id="cpuChart"></canvas></div>
+
+<h2>Memory committed - hourly average</h2>
+<div class="chart-wrap"><canvas id="memChart"></canvas></div>
+
+<h2>Disk %Time - hourly average</h2>
+<div class="chart-wrap"><canvas id="diskChart"></canvas></div>
+
+<h2>Top processes</h2>
+<div class="tables">
+  <div>
+    <table>
+      <thead><tr><th>Process</th><th>Avg CPU</th><th>Peak CPU</th></tr></thead>
+      <tbody><tr><td>Code</td><td>1.32%</td><td>64.99%</td></tr>
+<tr><td>python</td><td>0.87%</td><td>42.19%</td></tr>
+<tr><td>msedge</td><td>0.13%</td><td>21.07%</td></tr>
+<tr><td>chrome</td><td>0.02%</td><td>8.13%</td></tr>
+<tr><td>chrome-native-host</td><td>0%</td><td>0%</td></tr>
+<tr><td>msedgewebview2</td><td>0%</td><td>0%</td></tr></tbody>
+    </table>
+  </div>
+  <div>
+    <table>
+      <thead><tr><th>Process</th><th>Peak RAM</th><th>Avg RAM</th></tr></thead>
+      <tbody><tr><td>Code</td><td>513.59 MB</td><td>92.11 MB</td></tr>
+<tr><td>msedge</td><td>275.59 MB</td><td>33.11 MB</td></tr>
+<tr><td>chrome</td><td>231.75 MB</td><td>15.61 MB</td></tr>
+<tr><td>python</td><td>168.95 MB</td><td>9.11 MB</td></tr>
+<tr><td>msedgewebview2</td><td>4.32 MB</td><td>0.94 MB</td></tr>
+<tr><td>chrome-native-host</td><td>0.18 MB</td><td>0.07 MB</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  Flomatic Automation &middot; AI Workload Monitor &middot; Built in 8.6 s &middot; Source data: 0.39 MB
+</div>
+
+<script>
+Chart.defaults.color = '#8b949e';
+Chart.defaults.borderColor = '#30363d';
+const LABELS = ["2026-05-24 04:00","2026-05-24 05:00","2026-05-24 13:00","2026-05-24 14:00","2026-05-24 15:00"];
+function chart(id, label, data, color) {
+  new Chart(document.getElementById(id), {
+    type: 'line',
+    data: { labels: LABELS, datasets: [{ label, data, borderColor: color, backgroundColor: color + '33', tension: 0.25, fill: true, pointRadius: 0, borderWidth: 2 }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#e6edf3' } } },
+      scales: { x: { grid: { color: '#21262d' }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 12 } },
+                y: { grid: { color: '#21262d' }, beginAtZero: true } } }
+  });
+}
+chart('cpuChart',  'CPU %',                [16.31,30.6,39.55,10.66,41.52],  '#58a6ff');
+chart('memChart',  'Memory committed %',   [85.02,86.43,84.56,86.57,85.31],  '#3fb950');
+chart('diskChart', 'Disk % time',          [0.16,0.38,3.02,1.89,7.4], '#f0883e');
+</script>
+</body>
+</html>
