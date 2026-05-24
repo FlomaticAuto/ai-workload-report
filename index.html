@@ -27,13 +27,13 @@
 </head>
 <body>
 <h1>AI Workload Performance Report</h1>
-<div class="sub">Generated 2026-05-24 15:28:46 &middot; Window 05/24/2026 13:42:41.032 &rarr; 05/24/2026 15:28:33.635 &middot; 154 samples</div>
+<div class="sub">Generated 2026-05-24 15:40:35 &middot; Window 05/24/2026 13:42:41.032 &rarr; 05/24/2026 15:40:21.392 &middot; 225 samples</div>
 
 <div class="grid">
-  <div class="card"><h3>CPU avg</h3><div class="metric">34.7%</div></div>
-  <div class="card"><h3>CPU p95</h3><div class="metric">60.6%</div></div>
+  <div class="card"><h3>CPU avg</h3><div class="metric">36%</div></div>
+  <div class="card"><h3>CPU p95</h3><div class="metric">62.1%</div></div>
   <div class="card"><h3>CPU peak</h3><div class="metric">82.8%</div></div>
-  <div class="card"><h3>Mem committed avg</h3><div class="metric">85.2%</div></div>
+  <div class="card"><h3>Mem committed avg</h3><div class="metric">85.3%</div></div>
   <div class="card"><h3>Mem committed p95</h3><div class="metric">86.7%</div></div>
   <div class="card"><h3>Mem committed peak</h3><div class="metric">88%</div></div>
 </div>
@@ -52,29 +52,29 @@
   <div>
     <table>
       <thead><tr><th>Process</th><th>Avg CPU</th><th>Peak CPU</th></tr></thead>
-      <tbody><tr><td>Code</td><td>1.32%</td><td>64.99%</td></tr>
-<tr><td>python</td><td>0.87%</td><td>42.19%</td></tr>
-<tr><td>msedge</td><td>0.13%</td><td>21.07%</td></tr>
-<tr><td>chrome</td><td>0.02%</td><td>8.13%</td></tr>
+      <tbody><tr><td>Code</td><td>1.11%</td><td>64.99%</td></tr>
+<tr><td>python</td><td>0.65%</td><td>42.19%</td></tr>
+<tr><td>msedge</td><td>0.63%</td><td>308.28%</td></tr>
+<tr><td>chrome</td><td>0.06%</td><td>20.03%</td></tr>
 <tr><td>chrome-native-host</td><td>0%</td><td>0%</td></tr>
-<tr><td>msedgewebview2</td><td>0%</td><td>0%</td></tr></tbody>
+<tr><td>msedgewebview2</td><td>0%</td><td>0.16%</td></tr></tbody>
     </table>
   </div>
   <div>
     <table>
       <thead><tr><th>Process</th><th>Peak RAM</th><th>Avg RAM</th></tr></thead>
-      <tbody><tr><td>Code</td><td>513.59 MB</td><td>92.11 MB</td></tr>
-<tr><td>msedge</td><td>275.59 MB</td><td>33.11 MB</td></tr>
-<tr><td>chrome</td><td>231.75 MB</td><td>15.61 MB</td></tr>
-<tr><td>python</td><td>168.95 MB</td><td>9.11 MB</td></tr>
-<tr><td>msedgewebview2</td><td>4.32 MB</td><td>0.94 MB</td></tr>
-<tr><td>chrome-native-host</td><td>0.18 MB</td><td>0.07 MB</td></tr></tbody>
+      <tbody><tr><td>msedge</td><td>783.41 MB</td><td>40.33 MB</td></tr>
+<tr><td>Code</td><td>513.59 MB</td><td>96.08 MB</td></tr>
+<tr><td>chrome</td><td>231.75 MB</td><td>18.17 MB</td></tr>
+<tr><td>python</td><td>168.95 MB</td><td>7.17 MB</td></tr>
+<tr><td>msedgewebview2</td><td>4.32 MB</td><td>0.92 MB</td></tr>
+<tr><td>chrome-native-host</td><td>0.18 MB</td><td>0.09 MB</td></tr></tbody>
     </table>
   </div>
 </div>
 
 <div class="footer">
-  Flomatic Automation &middot; AI Workload Monitor &middot; Built in 8.6 s &middot; Source data: 0.39 MB
+  Flomatic Automation &middot; AI Workload Monitor &middot; Built in 9.7 s &middot; Source data: 0.59 MB
 </div>
 
 <script>
@@ -91,9 +91,9 @@ function chart(id, label, data, color) {
                 y: { grid: { color: '#21262d' }, beginAtZero: true } } }
   });
 }
-chart('cpuChart',  'CPU %',                [16.31,30.6,39.55,10.66,41.52],  '#58a6ff');
-chart('memChart',  'Memory committed %',   [85.02,86.43,84.56,86.57,85.31],  '#3fb950');
-chart('diskChart', 'Disk % time',          [0.16,0.38,3.02,1.89,7.4], '#f0883e');
+chart('cpuChart',  'CPU %',                [16.31,30.6,39.55,10.66,39.92],  '#58a6ff');
+chart('memChart',  'Memory committed %',   [85.02,86.43,84.56,86.57,85.45],  '#3fb950');
+chart('diskChart', 'Disk % time',          [0.16,0.38,3.02,1.89,4.11], '#f0883e');
 </script>
 </body>
 </html>
